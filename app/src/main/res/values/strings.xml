@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">OnceScaffold</string>
+
+    <string name="policyTxt">"欢迎您使用！\n"请在使用产品（或服务）前，仔细阅读并了解《用户协议》和《隐私政策》，您点击“同意”的前提是您确保已经完全了解我们对您个人信息的收集与处理（包括使用、保存、共享、转让）规则。一旦您点击“同意”政策，我们将视为您充分理解并同意本政策和协议的内容。"
+    </string>
+
+    <string name="main_home">首页</string>
+    <string name="main_message">线路规划</string>
+    <string name="main_qrcode">二维码</string>
+    <string name="main_tags">新闻</string>
+    <string name="main_user">我的</string>
+</resources>
