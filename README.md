@@ -1,12 +1,6 @@
  # Compose 脚手架
-全程使用Compose 
+全程使用Compose,使用buildSrc构建 
 
-```kotlin
-ext {
-    compose_version = '1.3.2'
-    accompanistVersion = '0.28.0'
-}
-```
 #### 使用库
 compose、官方的accompanist、Paging、Hilt、okhttp、retrofit
 
