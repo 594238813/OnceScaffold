@@ -58,7 +58,7 @@ object RetrofitClient{
         .connectTimeout(10, TimeUnit.SECONDS)
         .readTimeout(10, TimeUnit.SECONDS)
         .retryOnConnectionFailure(true)
-        .dns(ApiDns())
+//        .dns(ApiDns())
         .proxy(Proxy.NO_PROXY)
         .build()
 
@@ -69,5 +69,6 @@ object RetrofitClient{
         .addConverterFactory(GsonConverterFactory.create(Gson()))
         .baseUrl(URL_wanandroid)
         .build().create(WanAndroidApi::class.java)
+
 
 }

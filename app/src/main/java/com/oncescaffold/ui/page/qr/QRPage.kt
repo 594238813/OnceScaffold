@@ -32,6 +32,10 @@ import androidx.compose.foundation.layout.imePadding
 
 import androidx.compose.foundation.layout.imeNestedScroll
 import androidx.compose.ui.graphics.Color
+import com.google.accompanist.placeholder.PlaceholderHighlight
+import com.google.accompanist.placeholder.fade
+import com.google.accompanist.placeholder.material.placeholder
+import com.google.accompanist.placeholder.material.shimmer
 
 private val listItems = List(40) { randomSampleImageUrl(it) }
 
@@ -77,7 +81,8 @@ fun QRPage() {
         },
         modifier = Modifier.fillMaxSize(),
     ) { contentPadding ->
-        Column{
+        Column(
+        ){
             // We apply the contentPadding passed to us from the Scaffold
             LazyColumn(
                 contentPadding = contentPadding,
@@ -85,6 +90,7 @@ fun QRPage() {
                 modifier = Modifier
                     .weight(1f)
                     .imeNestedScroll()
+
             ) {
                 items(listItems) { imageUrl ->
                     ListItem(imageUrl, Modifier.fillMaxWidth())
@@ -106,7 +112,11 @@ fun ListItem(
             contentDescription = null,
             modifier = Modifier
                 .size(64.dp)
-                .clip(RoundedCornerShape(4.dp)),
+                .clip(RoundedCornerShape(4.dp))
+                .placeholder(
+                    visible = true,
+                    highlight = PlaceholderHighlight.shimmer(),
+                ),
         )
 
         Spacer(Modifier.width(16.dp))
@@ -117,6 +127,8 @@ fun ListItem(
             modifier = Modifier
                 .weight(1f)
                 .align(Alignment.CenterVertically)
+
+
         )
     }
 }

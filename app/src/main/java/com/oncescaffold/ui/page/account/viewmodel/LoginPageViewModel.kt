@@ -6,6 +6,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+//import com.aallam.openai.api.ExperimentalOpenAI
+//import com.aallam.openai.api.image.ImageCreationJSON
+//import com.aallam.openai.api.image.ImageCreationURL
+//import com.aallam.openai.api.image.ImageSize
+//import com.aallam.openai.client.OpenAI
 import com.oncescaffold.bean.RegisterReqBean
 import com.oncescaffold.net.RetrofitClient.retrofitDefault
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -126,6 +131,30 @@ class LoginPageViewModel @Inject constructor(): ViewModel() {
         }
 
     }
+
+
+//    @OptIn(ExperimentalOpenAI::class)
+//    fun getImgURL(){
+//
+//
+//        val openAI = OpenAI("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")
+//        val json = ImageCreationURL(
+//            prompt = "中国女性，二十左右，柳叶眉，不是很大的眼睛，单眼皮，瓜子脸，" +
+//                    "一头长发，长发的末端有一些卷，头上带着红色蝴蝶结，耳朵上带着俩樱桃耳环，" +
+//                    "红色羊毛长裙",
+//
+//            n = 2,
+//            size = ImageSize.is512x512
+//        )
+//        baseRequest{
+//            val list = openAI.image(json )
+//            Log.e("list",list.toString())
+//        }
+//
+//
+//
+//
+//    }
 
 
 

@@ -17,7 +17,7 @@ import com.oncescaffold.ui.theme.LocalGlobalNavController
 fun AndroidManifestPage(){
     val navController = LocalGlobalNavController.current
     AnimatedNavHost(navController,
-        startDestination = "AdPage",
+        startDestination = "MainPage",
         enterTransition = {
             //自己进来
             slideIntoContainer(AnimatedContentScope.SlideDirection.Left, animationSpec = tween(300))

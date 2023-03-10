@@ -7,6 +7,7 @@ import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
 import com.oncescaffold.bean.BaseBean
 import com.oncescaffold.net.RetrofitClient.defaultOkHttpClient
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -38,7 +39,8 @@ class RefreshTokenInterceptor : Interceptor {
         //判断返回 401   http 状态 的 过期  或者 其他code 表示过期
         if( response.code == HTTP_UNAUTHORIZED  || (bean!=null && bean.code!=null && bean.code =="1020")){
             getNewToken()
-            return chain.proceed( response.request.newBuilder().build()  )
+            //只要token过期 ，都有可能会重新请求
+            return chain.proceed( response.request.newBuilder().build() )
         }
 
         Log.e("ref","RefreshTokenInterceptor")
@@ -48,8 +50,12 @@ class RefreshTokenInterceptor : Interceptor {
 
     //用RefreshToken获取新token
     private fun getNewToken(){
-
+        //所有失败的Request 都会到这里
         synchronized(this) {
+            //使用sync 锁住， 让第一个Request，进行刷新token操作
+            //如果刷新成功，一段时间内 下面的if 判断 会是false ，false则返回方法， 重新请求
+            //如果刷新异常，跳转登录，在某一个时间 把if判断 设为true
+
             //防止 刷新失败 让其他线程继续刷新   CAS 操作  false 是否可以转为 true
             if(mIsTokenExpired.compareAndSet(mIsTokenExpired.get(),true)){
                 try {
@@ -66,6 +72,7 @@ class RefreshTokenInterceptor : Interceptor {
                         //解析token
                         val body = response.body
                         val bodyString = body?.string()
+
                         Log.e("auth", "$bodyString")
                         if (bodyString != null) {
 

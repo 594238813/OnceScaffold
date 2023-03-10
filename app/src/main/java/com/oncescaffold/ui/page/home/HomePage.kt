@@ -52,6 +52,7 @@ fun HomePage(
     }
     val articleList = state.pagingData.collectAsLazyPagingItems()
 
+
     //LazyListState 可以放到 ViewModel中
     val listState = if (articleList.itemCount > 0) state.listState else LazyListState()
 
@@ -122,6 +123,7 @@ fun TopBanner(homePageViewModel: HomePageViewModel,
             contentDescription = "",
             contentScale = ContentScale.Fit)
     }
+
 }
 
 fun LazyListState.disableScrolling(scope: CoroutineScope) {
